@@ -3,7 +3,7 @@ import menuButton from "../assets/menu-icon.png"
 const Navbar = () => {
     
   return (
-    <div className="mx-auto container flex items-center justify-between py-6 px-6">
+    <div className="mx-auto container flex items-center justify-between py-6 px-6 absolute top-0">
         <a href="/"> <h2 className="text-2xl font-bold">KhanBlog</h2></a>
 
         <ul className="basis-[50%] hidden md:flex gap-8 text-md">
