@@ -3,7 +3,7 @@ import Footer from "./components/Footer"
 import Header from "./components/Header"
 
 function App() {
-  // console.log(import.meta.env.VITE_FIREBASE_URL);
+  // console.log(import.meta.env.VITE_API_KEY );
   
   return (
     <div className="bg-white">
