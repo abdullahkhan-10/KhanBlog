@@ -1,12 +1,14 @@
 import app from "../Firebase/firebase"
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, query, updateDoc, where } from "firebase/firestore"
-
+import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 class ConfigServices{
     database;
+    storage;
 
     constructor(){
         this.database = getFirestore(app)
+        this.storage = getStorage(app)
     }
 
     // Create Post 
@@ -87,6 +89,39 @@ class ConfigServices{
             
         }
     }
+
+    // Upload files to firebase storage.
+    async uploadFile(file, imagePath){
+        try {
+            const storageRef = ref(this.storage, imagePath)
+            return await uploadBytes(storageRef, file)
+        } catch (error) {
+            console.log("Firebase Service: uploadFile error ", error);
+            
+        }
+    }
+
+    // delete file 
+    async deleteFile(imagePath){
+        try {
+            const fileRef = ref(this.storage, imagePath)
+            await deleteObject(fileRef,)
+        } catch (error) {
+            console.log("Firebase Service: deleteFile error ", error);
+        }
+    }
+
+    // file preview 
+    async filePreview(imagePath){
+        try {
+            const fileRef = ref(this.storage, imagePath)
+            return await getDownloadURL(fileRef)
+        } catch (error) {
+            console.log("Firebase Service: File Preview error ", error);
+            
+        }
+    }
+
 }
 
 const configServices = new ConfigServices()
